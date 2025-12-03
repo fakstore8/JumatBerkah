@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donasi Jumat Berkah - Sedekah Penuh Barakah</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-icon">🕌</div>
+            <h1>Donasi Jumat Berkah</h1>
+            <p class="subtitle">Jumat adalah hari terbaik, sedekah di hari Jumat adalah amal yang penuh berkah</p>
+            <div class="hadith-quote">
+                <p>"Sebaik-baik hari yang terbit matahari padanya adalah hari Jumat"</p>
+                <span>- HR. Muslim</span>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="card qris-section" id="qrisSection">
+                <h2>📱 Scan QRIS untuk Donasi</h2>
+                <div class="qris-container">
+                    <img src="qris.png" alt="QRIS Code" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect width=%22300%22 height=%22300%22 fill=%22%23f0f0f0%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22Arial%22 font-size=%2220%22 fill=%22%23999%22%3EQRIS Code%3C/text%3E%3C/svg%3E'">
+                </div>
+                <p style="margin-top: 20px; color: #a0a0a0;">Scan dengan aplikasi pembayaran favorit Anda</p>
+                <div id="donationInfo" style="margin-top: 20px; padding: 15px; background: rgba(34, 139, 34, 0.2); border-radius: 10px; display: none;">
+                    <p style="color: #228b22; font-weight: 600;">Menunggu pembayaran...</p>
+                    <p style="color: #a0a0a0; font-size: 0.9em; margin-top: 5px;">Nama: <span id="waitingName"></span></p>
+                    <p style="color: #a0a0a0; font-size: 0.9em;">Nominal: <span id="waitingAmount"></span></p>
+                </div>
+            </div>
+
+            <div class="card form-section">
+                <h2>✍️ Isi Data Donatur</h2>
+                <div id="successMessage" class="success-message">
+                    Barakallahu fiikum! Donasi Anda telah tercatat ❤️
+                </div>
+                <form id="donationForm">
+                    <div class="form-group">
+                        <label for="name">Nama Donatur</label>
+                        <input type="text" id="name" placeholder="Masukkan nama Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Nominal Donasi (Rp)</label>
+                        <input type="number" id="amount" placeholder="50000" min="1000" required>
+                        <p style="color: #228b22; font-size: 0.85em; margin-top: 5px;">💡 Sedekah di hari Jumat dianjurkan untuk berlipat ganda pahalanya</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="proof">Bukti Transfer 📸</label>
+                        <input type="file" id="proof" accept="image/*" required style="padding: 10px;">
+                        <p style="color: #808080; font-size: 0.85em; margin-top: 5px;">Upload screenshot bukti pembayaran</p>
+                    </div>
+                    <button type="submit" id="submitBtn">🎁 Kirim Donasi Berkah</button>
+                </form>
+                <div id="paymentSimulator" style="margin-top: 20px; display: none;">
+                    <div style="padding: 20px; background: rgba(255, 193, 7, 0.1); border: 2px dashed #ffc107; border-radius: 10px; text-align: center;">
+                        <p style="color: #ffc107; font-weight: 600; margin-bottom: 10px;">⏳ Menunggu Konfirmasi Admin</p>
+                        <p style="color: #a0a0a0; font-size: 0.9em; margin-bottom: 15px;">Data Anda sudah terkirim ke admin. Mohon tunggu konfirmasi untuk memproses donasi Anda.</p>
+                        <p style="color: #808080; font-size: 0.85em;">💡 Admin akan mengkonfirmasi melalui Discord</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <div class="info-card">
+                <div class="info-icon">🌙</div>
+                <h3>Keutamaan Sedekah di Hari Jumat</h3>
+                <p>Hari Jumat adalah hari yang mulia, sedekah yang diberikan di hari ini memiliki keutamaan yang lebih besar</p>
+            </div>
+            <div class="info-card">
+                <div class="info-icon">💎</div>
+                <h3>Pahala Berlipat Ganda</h3>
+                <p>Sedekah yang ikhlas akan dibalas oleh Allah hingga 700 kali lipat atau lebih</p>
+            </div>
+            <div class="info-card">
+                <div class="info-icon">🤲</div>
+                <h3>Doa untuk Donatur</h3>
+                <p>Setiap donatur akan didoakan agar diberkahi rezeki dan dilimpahi keberkahan</p>
+            </div>
+        </div>
+
+        <div class="donors-section">
+            <div class="total-donation">
+                <h3>Total Donasi Jumat Berkah</h3>
+                <div class="total-amount" id="totalAmount">Rp 0</div>
+                <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.9;">Barakallahu fiikum untuk semua donatur 🤲</p>
+            </div>
+            <h2>🌟 Daftar Donatur Jumat Berkah</h2>
+            <div class="donor-list" id="donorList">
+                <p style="text-align: center; color: #808080; padding: 40px;">Belum ada donatur. Jadilah yang pertama bersedekah di Jumat Berkah! 🕌</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thank You Modal -->
+    <div id="thankYouModal" class="thank-you-modal">
+        <div class="thank-you-content">
+            <div class="thank-you-icon">🤲</div>
+            <h2 class="thank-you-title">Jazakallahu Khairan Katsiran!</h2>
+            <p class="thank-you-message">
+                Barakallahu fiikum atas kebaikan dan kepedulian Anda.<br>
+                Semoga donasi di Jumat Berkah ini menjadi amal jariyah yang mengalir pahalanya.
+            </p>
+            <div class="prayer-text">
+                "Perumpamaan orang yang menginfakkan hartanya di jalan Allah seperti sebutir biji yang menumbuhkan tujuh tangkai, pada setiap tangkai ada seratus biji. Allah melipatgandakan bagi siapa yang Dia kehendaki."<br>
+                <strong>- QS. Al-Baqarah: 261</strong><br><br>
+                <div class="doa-box">
+                    <strong>🤲 Doa untuk Anda:</strong><br>
+                    Ya Allah, limpahkanlah keberkahan kepada donatur ini, lapangkanlah rezekinya, mudahkanlah segala urusannya, dan jadikanlah sedekah ini sebagai pemberat timbangan amal kebaikannya. Aamiin Ya Rabbal 'Alamin.
+                </div>
+            </div>
+            <button class="close-modal-btn" onclick="closeThankYouModal()">
+                ✨ Aamiin Ya Rabbal Alamin
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
